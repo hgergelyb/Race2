@@ -36,24 +36,37 @@ namespace Race2
 
         private void btnAddUser_Click(object sender, EventArgs e)
         {
-            int iTmp = Convert.ToInt32(numUserAge.Value);
-            lUsers.Add(new User(tbxUserName.Text, iTmp));
-            listBox1.Items.Add(tbxUserName.Text + " (" + iTmp + ")");
-            clbLapsUser.Items.Add(tbxUserName.Text + " (" + iTmp + ")");
+            if(tbxUserName.Text.Length == 0)
+            {
+                MessageBox.Show("User name cannot be empty", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                int iTmp = Convert.ToInt32(numUserAge.Value);
+                lUsers.Add(new User(tbxUserName.Text, iTmp));
+                listBox1.Items.Add(tbxUserName.Text + " (" + iTmp + ")");
+                clbLapsUser.Items.Add(tbxUserName.Text + " (" + iTmp + ")");
+            }
         }
 
         private void btnNewRace_Click(object sender, EventArgs e)
         {
             // Add new race
-            
-            myRace = new RRace(tbxRaceName.Text, numRaceDistance.Value, numCostPerPerson.Value, numEstCostPerLaps.Value);
-            lblRaceName.Text = tbxRaceName.Text;
-            //pnlLaps.Visible = true;
-            pnlLaps.Enabled = true;
-            //    pnlRaceBasic.Enabled = false; //probably it is not necessary
-            numLapNumber.Maximum = numRaceDistance.Value;
-            btnNewRace.Visible = false;
-            btnModifyRace.Visible = true;
+            if (tbxRaceName.Text.Length == 0)
+            {
+                MessageBox.Show("Race name cannot be empty", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                myRace = new RRace(tbxRaceName.Text, numRaceDistance.Value, numCostPerPerson.Value, numEstCostPerLaps.Value);
+                lblRaceName.Text = tbxRaceName.Text;
+                //pnlLaps.Visible = true;
+                pnlLaps.Enabled = true;
+                //    pnlRaceBasic.Enabled = false; //probably it is not necessary
+                numLapNumber.Maximum = numRaceDistance.Value;
+                btnNewRace.Visible = false;
+                btnModifyRace.Visible = true;
+            }
         }
 
         private void btnAddLap_Click(object sender, EventArgs e)
@@ -159,5 +172,18 @@ namespace Race2
             numLapNumber.Maximum = numRaceDistance.Value;
 
         }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+/*            myRace = null;
+            tbxRaceName.Text = "";
+            textBox1.Text = "";
+            pnlLaps.Enabled = false;
+            pnlSum.Enabled = false;
+            btnNewRace.Visible = true;
+            btnModifyRace.Visible = false;
+*/
+        }
+
     }
 }

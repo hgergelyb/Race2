@@ -99,6 +99,8 @@ namespace Race
 
         }
 
+        
+
         public void ModifyRace(string name, decimal dist, decimal cpp, decimal ecpl)
         {
             sName = name;
