@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace Race
 {
-    public class UsersBestLap
-    {
+    public class UsersBestLap  // it needs to be a class to be able to be used in a DataBaseView
+    { 
         public int iUserId { get; set; }
         public string sUserName { get; set; }
-        public long lTime { get; set; }
-        public long lTSum { get; set; }
-        public int iLaps { get; set; }
-        public long lTAvg { get; set; }
-        public string sBestTime { get; set; }
-        public string sAvgTime { get; set; }
+        public long lTime { get; set; } //best time in long
+        public long lTSum { get; set; } // total time for average
+        public int iLaps { get; set; }  
+        public long lTAvg { get; set; } // lTAvg = lTSum / iLaps
+        public string sBestTime { get; set; } // best time in string
+        public string sAvgTime { get; set; } // Avg time in string
 
         public UsersBestLap(int uid, string uname, long time)
         {
@@ -59,17 +59,16 @@ namespace Race
         }
     }
 
-    public class UsersBestLaps
-    {
+    public class UsersBestLaps // a List of class UsersBestLap 
+    {                           // every user has a row
         public List<UsersBestLap> blaps = new List<UsersBestLap>();
 
-        //      public UsersBestLaps(List<UsersBestLap> blaps) { this.blaps = blaps; }
         public void addBestLap(UsersBestLap ubl)
         {
             blaps.Add(ubl);
         }
 
-        public int GetUserId(int userId)
+        public int GetUserId(int userId) 
         {
             int i = 0;
             foreach (UsersBestLap a in blaps)
@@ -83,13 +82,10 @@ namespace Race
 
         public void ChangeTime(int id, long t)
         {
-            //            blaps[id].lTime = t;
-
             UsersBestLap tmp;
             tmp = blaps[id];
             tmp.lTime = t;
             blaps[id] = tmp;
-
         }
 
         public void AddTimeToAvg(int id, long t)

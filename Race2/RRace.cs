@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.Remoting.Channels;
 using System.Security.Cryptography.X509Certificates;
@@ -13,12 +14,12 @@ namespace Race
  
     public struct LapTime
     {
-        public long lTime; // time in millisec
+        public long lTime; // time in millisec for comparison
         public int iMin;
         public int iSec;
         public int iMillisec;
 
-        public LapTime(int sec, int millisec)
+        public LapTime(int sec, int millisec)// Constructor 1
         {
             this.iSec = sec;
             this.iMillisec = millisec;
@@ -26,7 +27,7 @@ namespace Race
             this.lTime = sec * 1000 + millisec;
         }
 
-        public LapTime(int min, int sec, int millisec)
+        public LapTime(int min, int sec, int millisec)  // Constructor 2
         {
             this.iSec = sec;
             this.iMillisec = millisec;
@@ -35,7 +36,7 @@ namespace Race
             this.lTime = min * 60000 + sec * 1000 + millisec;
         }
         public string LapTimeToString()
-        {
+        { /// Time to string in 0:00:000 format
             return (iMin == 0 ? "" : iMin + ":") + FillUpZeros(Convert.ToString(iSec)) + ":" + FillUpZeros(Convert.ToString(iMillisec), 3);
         }
         public string FillUpZeros(string str, int z = 2) {
@@ -71,7 +72,6 @@ namespace Race
             this.sUserName = un;
             this.iLapNumber = lnum;
             this.iLapTime = lp;
-
         }
     }
 
@@ -99,6 +99,14 @@ namespace Race
 
         }
 
+        public void ModifyRace(string name, decimal dist, decimal cpp, decimal ecpl)
+        {
+            sName = name;
+            dDistance = dist;
+            dCostPerPerson = cpp;
+            dEstCostPerLap = ecpl;
+        }
+
         public void AddLaps(Laps l)
         {
             lLaps.Add(l);
@@ -108,10 +116,6 @@ namespace Race
         {
           //  List<UsersBestLap> ubl = new List<UsersBestLap>();
             UsersBestLaps ubls = new UsersBestLaps();
- //           int i = 0;
-  //          int iMaxI = ubls.blaps.Count;
-
-           
 
             foreach (Laps l in lLaps)
             {
@@ -127,19 +131,16 @@ namespace Race
                 {
                     ubls.ChangeTime(iId, l.iLapTime.lTime);
                     ubls.AddTimeToAvg(iId, l.iLapTime.lTime);
-//                    ubls.blaps[iId].lTime = l.iLapTime.lTime;
 
                 }
                 else
                 {
                     ubls.AddTimeToAvg(iId, l.iLapTime.lTime);
                 }
-
-
             }
 
             // The best lap time for each of the racers
- //           string sOut = "";
+ 
             iUserCount = 0;
             foreach (UsersBestLap b in ubls.blaps)
             {
@@ -147,21 +148,14 @@ namespace Race
                 b.sAvgTime = b.TimeToStr(b.lTAvg);
                 b.sBestTime = b.TimeToStr(b.lTime);
                 iUserCount++;
-  //              sOut += b.iUserId + " : " + b.sUserName + "  " + Convert.ToString(b.lTime) + Environment.NewLine;
             }
-            MessageBox.Show(iUserCount + "///" + ubls.blaps.Count());
+ 
             return ubls.blaps;
         }
 
         private int GetUsersInt()
-        {
+        {// placeholder
             throw new NotImplementedException();
-        }
-
-        public string AverageLapPerRacer()
-        {
-            // The average lap time for each racer
-            return "";
         }
 
         public long getBestLapTime()
@@ -189,24 +183,22 @@ namespace Race
         public decimal GetPetrolCost()
         {
             // How much was the cost in petrol? (Estimated cost of petrol per lap * lap total)
-     //       return dDistance * dEstCostPerLap;
             return dEstCostPerLap * lLaps.Count();
          }
 
         public decimal GetProfit()
         {
             // Did the business make any profit? (Cost per person * number of people – total cost of petrol)
-            return GetMoneyMade() - GetPetrolCost();// * iUserCount;
+            return GetMoneyMade() - GetPetrolCost();
         }   
 
         public string AllToString()
-        {
+        { //for testing, bug hunting
             string sOut = "";
             sOut += sName + Environment.NewLine + Convert.ToString(dCostPerPerson) + Environment.NewLine + Convert.ToString(dEstCostPerLap)+ Environment.NewLine+ Environment.NewLine;
 
             foreach (Laps l in lLaps)
             {
-//                sOut += l.sUserName + " : " + l.iLapNumber + " : " + Convert.ToString(l.iLapTime.lTime);
                 sOut += l.sUserName + " : " + l.iLapNumber + " : " + l.iLapTime.LapTimeToString();
                 sOut += Environment.NewLine;
 
@@ -214,6 +206,25 @@ namespace Race
             }
             //MessageBox.Show(sOut);
             return sOut;
+
+        }
+
+        public void SaveAllToFile()
+        {
+            string sFilename = "../"+sName+"_race.txt";
+            string sOut = sName+ ";"+ Convert.ToString(dDistance) + ";" + Convert.ToString(dCostPerPerson) + ";" + Convert.ToString(dEstCostPerLap);
+
+            using (StreamWriter writer = new StreamWriter(sFilename))
+            {
+                writer.WriteLine(sOut);
+
+                foreach (Laps l in lLaps)
+                {
+                    //                sOut += l.sUserName + " : " + l.iLapNumber + " : " + Convert.ToString(l.iLapTime.lTime);
+                    sOut = l.sUserName + ";" + l.iLapNumber + ";" + l.iLapTime.lTime;
+                    writer.WriteLine(sOut);
+                }
+            }
 
         }
     }

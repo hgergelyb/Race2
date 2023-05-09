@@ -31,14 +31,15 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabUsers = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.btnAddUser = new System.Windows.Forms.Button();
-            this.tbxUserAge = new System.Windows.Forms.TextBox();
             this.tbxUserName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabRace = new System.Windows.Forms.TabPage();
             this.pnlSum = new System.Windows.Forms.Panel();
+            this.btnSave = new System.Windows.Forms.Button();
             this.dgvBestLaps = new System.Windows.Forms.DataGridView();
             this.lblPetrolCost = new System.Windows.Forms.Label();
             this.lblProfit = new System.Windows.Forms.Label();
@@ -46,6 +47,8 @@
             this.lblBestUser = new System.Windows.Forms.Label();
             this.btnSummarise2 = new System.Windows.Forms.Button();
             this.pnlLaps = new System.Windows.Forms.Panel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.clbLapsUser = new System.Windows.Forms.CheckedListBox();
             this.btnSummarise = new System.Windows.Forms.Button();
             this.lblRaceName = new System.Windows.Forms.Label();
             this.lblBestLap = new System.Windows.Forms.Label();
@@ -59,6 +62,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.numLapNumber = new System.Windows.Forms.NumericUpDown();
             this.pnlRaceBasic = new System.Windows.Forms.Panel();
+            this.btnModifyRace = new System.Windows.Forms.Button();
+            this.label12 = new System.Windows.Forms.Label();
             this.btnNewRace = new System.Windows.Forms.Button();
             this.numEstCostPerLaps = new System.Windows.Forms.NumericUpDown();
             this.numCostPerPerson = new System.Windows.Forms.NumericUpDown();
@@ -68,12 +73,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.tbxRaceName = new System.Windows.Forms.TextBox();
-            this.clbLapsUser = new System.Windows.Forms.CheckedListBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.btnModifyRace = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
+            this.numUserAge = new System.Windows.Forms.NumericUpDown();
             this.tabControl1.SuspendLayout();
             this.tabUsers.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -89,6 +89,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numEstCostPerLaps)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCostPerPerson)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numRaceDistance)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numUserAge)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -117,9 +118,9 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.numUserAge);
             this.panel1.Controls.Add(this.listBox1);
             this.panel1.Controls.Add(this.btnAddUser);
-            this.panel1.Controls.Add(this.tbxUserAge);
             this.panel1.Controls.Add(this.tbxUserName);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
@@ -128,6 +129,15 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(449, 362);
             this.panel1.TabIndex = 0;
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 20;
+            this.listBox1.Location = new System.Drawing.Point(257, 89);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(171, 244);
+            this.listBox1.TabIndex = 6;
             // 
             // btnAddUser
             // 
@@ -138,13 +148,6 @@
             this.btnAddUser.Text = "Add user";
             this.btnAddUser.UseVisualStyleBackColor = true;
             this.btnAddUser.Click += new System.EventHandler(this.btnAddUser_Click);
-            // 
-            // tbxUserAge
-            // 
-            this.tbxUserAge.Location = new System.Drawing.Point(32, 177);
-            this.tbxUserAge.Name = "tbxUserAge";
-            this.tbxUserAge.Size = new System.Drawing.Size(86, 27);
-            this.tbxUserAge.TabIndex = 4;
             // 
             // tbxUserName
             // 
@@ -210,6 +213,16 @@
             this.pnlSum.Name = "pnlSum";
             this.pnlSum.Size = new System.Drawing.Size(988, 257);
             this.pnlSum.TabIndex = 2;
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(872, 42);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(104, 54);
+            this.btnSave.TabIndex = 6;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // dgvBestLaps
             // 
@@ -290,6 +303,24 @@
             this.pnlLaps.Size = new System.Drawing.Size(646, 340);
             this.pnlLaps.TabIndex = 1;
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(284, 91);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(288, 229);
+            this.textBox1.TabIndex = 14;
+            // 
+            // clbLapsUser
+            // 
+            this.clbLapsUser.CheckOnClick = true;
+            this.clbLapsUser.FormattingEnabled = true;
+            this.clbLapsUser.Location = new System.Drawing.Point(28, 8);
+            this.clbLapsUser.Name = "clbLapsUser";
+            this.clbLapsUser.Size = new System.Drawing.Size(203, 136);
+            this.clbLapsUser.TabIndex = 13;
+            this.clbLapsUser.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.clbLapsUser_ItemCheck);
+            // 
             // btnSummarise
             // 
             this.btnSummarise.Location = new System.Drawing.Point(488, 8);
@@ -303,16 +334,17 @@
             // lblRaceName
             // 
             this.lblRaceName.AutoSize = true;
-            this.lblRaceName.Location = new System.Drawing.Point(280, 51);
+            this.lblRaceName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRaceName.Location = new System.Drawing.Point(280, 12);
             this.lblRaceName.Name = "lblRaceName";
-            this.lblRaceName.Size = new System.Drawing.Size(15, 20);
+            this.lblRaceName.Size = new System.Drawing.Size(28, 36);
             this.lblRaceName.TabIndex = 11;
             this.lblRaceName.Text = "-";
             // 
             // lblBestLap
             // 
             this.lblBestLap.AutoSize = true;
-            this.lblBestLap.Location = new System.Drawing.Point(280, 8);
+            this.lblBestLap.Location = new System.Drawing.Point(280, 54);
             this.lblBestLap.Name = "lblBestLap";
             this.lblBestLap.Size = new System.Drawing.Size(15, 20);
             this.lblBestLap.TabIndex = 10;
@@ -431,6 +463,27 @@
             this.pnlRaceBasic.Size = new System.Drawing.Size(321, 340);
             this.pnlRaceBasic.TabIndex = 0;
             // 
+            // btnModifyRace
+            // 
+            this.btnModifyRace.Location = new System.Drawing.Point(123, 283);
+            this.btnModifyRace.Name = "btnModifyRace";
+            this.btnModifyRace.Size = new System.Drawing.Size(76, 41);
+            this.btnModifyRace.TabIndex = 10;
+            this.btnModifyRace.Text = "Modify";
+            this.btnModifyRace.UseVisualStyleBackColor = true;
+            this.btnModifyRace.Visible = false;
+            this.btnModifyRace.Click += new System.EventHandler(this.btnModifyRace_Click);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(83, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(84, 32);
+            this.label12.TabIndex = 9;
+            this.label12.Text = "Race";
+            // 
             // btnNewRace
             // 
             this.btnNewRace.Location = new System.Drawing.Point(123, 282);
@@ -537,60 +590,27 @@
             this.tbxRaceName.Size = new System.Drawing.Size(178, 27);
             this.tbxRaceName.TabIndex = 0;
             // 
-            // clbLapsUser
+            // numUserAge
             // 
-            this.clbLapsUser.FormattingEnabled = true;
-            this.clbLapsUser.Location = new System.Drawing.Point(28, 8);
-            this.clbLapsUser.Name = "clbLapsUser";
-            this.clbLapsUser.Size = new System.Drawing.Size(203, 136);
-            this.clbLapsUser.TabIndex = 13;
-            this.clbLapsUser.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.clbLapsUser_ItemCheck);
-            // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 20;
-            this.listBox1.Location = new System.Drawing.Point(257, 89);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(171, 244);
-            this.listBox1.TabIndex = 6;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(284, 91);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(288, 229);
-            this.textBox1.TabIndex = 14;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(83, 0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(105, 40);
-            this.label12.TabIndex = 9;
-            this.label12.Text = "Race";
-            // 
-            // btnModifyRace
-            // 
-            this.btnModifyRace.Location = new System.Drawing.Point(240, 282);
-            this.btnModifyRace.Name = "btnModifyRace";
-            this.btnModifyRace.Size = new System.Drawing.Size(76, 41);
-            this.btnModifyRace.TabIndex = 10;
-            this.btnModifyRace.Text = "Modify";
-            this.btnModifyRace.UseVisualStyleBackColor = true;
-            // 
-            // btnSave
-            // 
-            this.btnSave.Location = new System.Drawing.Point(872, 42);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(104, 54);
-            this.btnSave.TabIndex = 6;
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.numUserAge.Location = new System.Drawing.Point(32, 177);
+            this.numUserAge.Maximum = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            this.numUserAge.Minimum = new decimal(new int[] {
+            21,
+            0,
+            0,
+            0});
+            this.numUserAge.Name = "numUserAge";
+            this.numUserAge.Size = new System.Drawing.Size(108, 27);
+            this.numUserAge.TabIndex = 7;
+            this.numUserAge.Value = new decimal(new int[] {
+            21,
+            0,
+            0,
+            0});
             // 
             // Form1
             // 
@@ -621,6 +641,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numEstCostPerLaps)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCostPerPerson)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numRaceDistance)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numUserAge)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -631,7 +652,6 @@
         private System.Windows.Forms.TabPage tabUsers;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnAddUser;
-        private System.Windows.Forms.TextBox tbxUserAge;
         private System.Windows.Forms.TextBox tbxUserName;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
@@ -673,6 +693,7 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnModifyRace;
+        private System.Windows.Forms.NumericUpDown numUserAge;
     }
 }
 

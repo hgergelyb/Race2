@@ -36,27 +36,24 @@ namespace Race2
 
         private void btnAddUser_Click(object sender, EventArgs e)
         {
-            int iTmp = Convert.ToInt32(tbxUserAge.Text);
+            int iTmp = Convert.ToInt32(numUserAge.Value);
             lUsers.Add(new User(tbxUserName.Text, iTmp));
-            listBox1.Items.Add(tbxUserName.Text + " (" + tbxUserAge.Text + ")");
-            clbLapsUser.Items.Add(tbxUserName.Text + " (" + tbxUserAge.Text + ")");
+            listBox1.Items.Add(tbxUserName.Text + " (" + iTmp + ")");
+            clbLapsUser.Items.Add(tbxUserName.Text + " (" + iTmp + ")");
         }
 
         private void btnNewRace_Click(object sender, EventArgs e)
         {
             // Add new race
-            //public Race(string name, int dist, int cpp, int ecpl)
-
+            
             myRace = new RRace(tbxRaceName.Text, numRaceDistance.Value, numCostPerPerson.Value, numEstCostPerLaps.Value);
             lblRaceName.Text = tbxRaceName.Text;
             //pnlLaps.Visible = true;
             pnlLaps.Enabled = true;
             //    pnlRaceBasic.Enabled = false; //probably it is not necessary
             numLapNumber.Maximum = numRaceDistance.Value;
-            //MessageBox.Show(Convert.ToString(numCostPerPerson.Value));
-       //  ??? sajat maga   button1.Visible = false;
-       //   ??? modositas?  button3.Visible = true;
-
+            btnNewRace.Visible = false;
+            btnModifyRace.Visible = true;
         }
 
         private void btnAddLap_Click(object sender, EventArgs e)
@@ -74,26 +71,18 @@ namespace Race2
             }
 
             Laps myLap = new Laps(index, (string)clbLapsUser.Items[index], Convert.ToInt16(numLapNumber.Value), myLapTime);
+            // Add the lap to the race
             myRace.AddLaps(myLap);
+
+            // Show the lap in the list 
+            // for delete laps in a future update the textbox must be swapped 
             textBox1.AppendText(myLap.iLapNumber + "   " + myLap.iLapTime.LapTimeToString() + "   " + myLap.sUserName + Environment.NewLine);
-
-            /*
-                        //textBox1.Text = myRace.AllToString();
-                        textBox1.AppendText(myRace.AllToString());
-                        textBox1.AppendText(Environment.NewLine);
-
-
-                        sOut += myLap.sUserName + " : " + myLap.iLapNumber + " : " + myLap.iLapTime.LapTimeToString();
-                        sOut += Environment.NewLine;
-
-                        sOut += Environment.NewLine;
-            */
 
             /****** Best Lap Time / User *******/
             long lRaceBestLapTime = myRace.getBestLapTime();
 
             if (lRaceBestLapTime == 0)
-            {
+            { // the first record
                 myRace.setBestLapTime(myLapTime.lTime, myLap.sUserName);
                 lblBestLap.Text = myLapTime.LapTimeToString() + "   " + myLap.sUserName;
             }
@@ -105,15 +94,11 @@ namespace Race2
                 // make a note about the new record
             }
 
-
-
-
-            //           MessageBox.Show("Name: "+(string)clbLapsUser.Items[clbLapsUser.SelectedIndex]);
-
         }
 
         private void clbLapsUser_ItemCheck(object sender, ItemCheckEventArgs e)
-        {
+        {// checked list box
+            // only one item can be selected
             if (index == -1)
                 return;
             else if (index == e.Index)
@@ -129,47 +114,19 @@ namespace Race2
         }
 
         private void btnSummarise_Click(object sender, EventArgs e)
-        {
+        {// button in the Laps panel
+            //after we finish with laps it makes the Summarise panel visible and do the summarise
             pnlSum.Enabled = true;
-            //   pnlLaps.Enabled = false; // probably it is not necessary
-
+            btnSummarise2_Click(sender, e);
         }
 
         private void btnSummarise2_Click(object sender, EventArgs e)
-        {
-            //textBox1.AppendText(myLap.iLapNumber + "   " + myLap.iLapTime.LapTimeToString() + "   " + myLap.sUserName + Environment.NewLine);
-            //           tbxBestTimes.Clear();
-            //    tbxBestTimes.AppendText(myRace.GetLapRecords());
-
+        { // 
             List<UsersBestLap> tmpBestLaps = new List<UsersBestLap>();
-            /*
-            tmpBestLaps.Add(new UsersBestLap(0, "FFFFFFFF", 123456));
-            tmpBestLaps.Add(new UsersBestLap(1, "gsdf gsdfgsd", 123456));
-            tmpBestLaps.Add(new UsersBestLap(2, "ASDF", 123456));
-            tmpBestLaps.Add(new UsersBestLap(3, "poiuytre", 123456));
 
-            //    
-
-            foreach (UsersBestLap usp in tmpBestLaps)
-            {
-                MessageBox.Show(usp.sUserName);
-            }
-            */
-            //   tmpBestLaps.Add()
             tmpBestLaps = myRace.GetLapRecords();
             dgvBestLaps.DataSource = tmpBestLaps;
             dgvBestLaps.Columns["iUserId"].Visible = false;
-
-            /*
-               public int iUserId { get; set; }
-        public string sUserName { get; set; }
-        public long lTime { get; set; }
-        public long lTSum { get; set; }
-        public int iLaps { get; set; }
-        public long lTAvg { get; set; }
-        public string sBestTime { get; set; }
-        public string sAvgTime { get; set; }*/
-
 
             dgvBestLaps.Columns["lTAvg"].Visible = false;
             dgvBestLaps.Columns["lTSum"].Visible = false;
@@ -180,27 +137,27 @@ namespace Race2
             dgvBestLaps.Columns["sUserName"].HeaderText = "Racer";
             dgvBestLaps.Columns["iLaps"].HeaderText = "Laps";
 
-
-
             lblPetrolCost.Text = "Petrol cost: £" + Convert.ToString(myRace.GetPetrolCost());
             lblProfit.Text = "Profit: £" + Convert.ToString(myRace.GetProfit());
             lblMoneyMade.Text = "Money made: £" + Convert.ToString(myRace.GetMoneyMade());
             lblBestUser.Text = "The best lap time: " + myRace.GetBestUser();
             // lblBestLapTime.Text = myRace.getBestLapTime();
 
-
-
             //tbxBestTimes.AppendText(Convert.ToString(unum));
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-/*
-            string json = JsonConvert.SerializeObject(myRace.ToArray());
+            myRace.SaveAllToFile();
+            MessageBox.Show("The data of this race saved into '" + tbxRaceName.Text + "_race.txt'");
+        }
 
-            //write string to file
-            System.IO.File.WriteAllText(@"_"+ tbxRaceName.Text + ".txt", json);
-*/
+        private void btnModifyRace_Click(object sender, EventArgs e)
+        {
+            myRace.ModifyRace(tbxRaceName.Text, numRaceDistance.Value, numCostPerPerson.Value, numEstCostPerLaps.Value);
+            lblRaceName.Text = tbxRaceName.Text;
+            numLapNumber.Maximum = numRaceDistance.Value;
+
         }
     }
 }
