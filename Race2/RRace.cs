@@ -14,17 +14,22 @@ namespace Race
  
     public struct LapTime
     {
-        public long lTime; // time in millisec for comparison
-        public int iMin;
-        public int iSec;
-        public int iMillisec;
+        private long LTime; // time in millisec for comparison
+        public long lTime 
+        { 
+            get { return LTime; }
+        } 
+
+        private int iMin;
+        private int iSec;
+        private int iMillisec;
 
         public LapTime(int sec, int millisec)// Constructor 1
         {
             this.iSec = sec;
             this.iMillisec = millisec;
             this.iMin = 0;
-            this.lTime = sec * 1000 + millisec;
+            this.LTime = sec * 1000 + millisec;
         }
 
         public LapTime(int min, int sec, int millisec)  // Constructor 2
@@ -33,7 +38,7 @@ namespace Race
             this.iMillisec = millisec;
             this.iMin = min;
 
-            this.lTime = min * 60000 + sec * 1000 + millisec;
+            this.LTime = min * 60000 + sec * 1000 + millisec;
         }
         public string LapTimeToString()
         { /// Time to string in 0:00:000 format
