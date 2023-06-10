@@ -7,15 +7,49 @@ using System.Threading.Tasks;
 namespace Race
 {
     public class UsersBestLap  // it needs to be a class to be able to be used in a DataBaseView
-    { 
-        public int iUserId { get; set; }
-        public string sUserName { get; set; }
-        public long lTime { get; set; } //best time in long
-        public long lTSum { get; set; } // total time for average
-        public int iLaps { get; set; }  
-        public long lTAvg { get; set; } // lTAvg = lTSum / iLaps
-        public string sBestTime { get; set; } // best time in string
-        public string sAvgTime { get; set; } // Avg time in string
+    {
+        private int _iUserId;
+        private string _sUserName;
+        private long _lTime; //best time in long
+        private long _lTSum; // total time for average
+        private int _iLaps;
+        private long _lTAvg; // lTAvg = lTSum / iLaps
+        private string _sBestTime; // best time in string
+        private string _sAvgTime; // Avg time in string
+
+
+        public int iUserId {
+            get { return _iUserId; }
+            set { _iUserId = value; } 
+        }
+        public string sUserName { 
+            get { return _sUserName; }
+            set { _sUserName = value; }
+        }
+        public long lTime { 
+            get { return _lTime; } 
+            set { _lTime = value; }
+        } 
+        public long lTSum { 
+            get { return _lTSum; }
+            set { _lTSum = value; }
+        }
+        public int iLaps { 
+            get { return _iLaps; }
+            set { _iLaps = value; } 
+        }  
+        public long lTAvg { 
+            get { return _lTAvg; }
+            set { _lTAvg = value; } 
+        } 
+        public string sBestTime { 
+            get { return _sBestTime; }
+            set { _sBestTime = value; }
+        } 
+        public string sAvgTime { 
+            get { return _sAvgTime; }
+            set { _sAvgTime = value; } 
+        }
 
         public UsersBestLap(int uid, string uname, long time)
         {

@@ -12,7 +12,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 namespace Race
 {
  
-    public struct LapTime
+    public class LapTime
     {
         private long LTime; // time in millisec for comparison
         public long lTime 
@@ -64,7 +64,7 @@ namespace Race
         }
     }
 
-    public struct Laps
+    public class Laps
     {
         public int iUserId;
         public string sUserName;
