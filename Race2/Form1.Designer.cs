@@ -400,9 +400,9 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(195, 219);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(36, 20);
+            this.label7.Size = new System.Drawing.Size(49, 25);
             this.label7.TabIndex = 8;
-            this.label7.Text = "Min";
+            this.label7.Text = "Milli";
             // 
             // label6
             // 
