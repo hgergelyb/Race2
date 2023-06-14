@@ -113,7 +113,7 @@
             this.tabUsers.Padding = new System.Windows.Forms.Padding(4);
             this.tabUsers.Size = new System.Drawing.Size(1034, 628);
             this.tabUsers.TabIndex = 2;
-            this.tabUsers.Text = "Users";
+            this.tabUsers.Text = "Racers";
             this.tabUsers.UseVisualStyleBackColor = true;
             // 
             // panel1
@@ -168,7 +168,7 @@
             this.btnAddUser.Name = "btnAddUser";
             this.btnAddUser.Size = new System.Drawing.Size(127, 53);
             this.btnAddUser.TabIndex = 5;
-            this.btnAddUser.Text = "Add user";
+            this.btnAddUser.Text = "Add racer";
             this.btnAddUser.UseVisualStyleBackColor = true;
             this.btnAddUser.Click += new System.EventHandler(this.btnAddUser_Click);
             // 
@@ -203,9 +203,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(160, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(98, 36);
+            this.label1.Size = new System.Drawing.Size(144, 45);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Users";
+            this.label1.Text = "Racers";
             // 
             // tabRace
             // 
@@ -400,7 +400,7 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(195, 219);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(49, 25);
+            this.label7.Size = new System.Drawing.Size(39, 20);
             this.label7.TabIndex = 8;
             this.label7.Text = "Milli";
             // 
