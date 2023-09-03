@@ -175,9 +175,11 @@
             // tbxUserName
             // 
             this.tbxUserName.Location = new System.Drawing.Point(32, 112);
+            this.tbxUserName.MaxLength = 20;
             this.tbxUserName.Name = "tbxUserName";
             this.tbxUserName.Size = new System.Drawing.Size(175, 27);
             this.tbxUserName.TabIndex = 3;
+            this.tbxUserName.Leave += new System.EventHandler(this.tbxUserName_Leave);
             // 
             // label3
             // 
@@ -203,7 +205,7 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(160, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(144, 45);
+            this.label1.Size = new System.Drawing.Size(115, 36);
             this.label1.TabIndex = 0;
             this.label1.Text = "Racers";
             // 
@@ -621,9 +623,11 @@
             // tbxRaceName
             // 
             this.tbxRaceName.Location = new System.Drawing.Point(18, 66);
+            this.tbxRaceName.MaxLength = 20;
             this.tbxRaceName.Name = "tbxRaceName";
             this.tbxRaceName.Size = new System.Drawing.Size(178, 27);
             this.tbxRaceName.TabIndex = 0;
+            this.tbxRaceName.Leave += new System.EventHandler(this.tbxUserName_Leave);
             // 
             // Form1
             // 

@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
@@ -20,6 +21,7 @@ namespace Race2
         public List<User> lUsers = new List<User>();
         private int index = 0; // for CheckedListBox to track the selected index
         RRace myRace;
+        const int MINUSERNAME = 3;
 
         public Form1()
         {
@@ -36,9 +38,9 @@ namespace Race2
 
         private void btnAddUser_Click(object sender, EventArgs e)
         {
-            if(tbxUserName.Text.Length == 0)
+            if(tbxUserName.Text.Length < MINUSERNAME)
             {
-                MessageBox.Show("User name cannot be empty", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("User name must be at least "+ MINUSERNAME+" characters.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
@@ -52,7 +54,7 @@ namespace Race2
         private void btnNewRace_Click(object sender, EventArgs e)
         {
             // Add new race
-            if (tbxRaceName.Text.Length == 0)
+            if (tbxRaceName.Text.Length < MINUSERNAME)
             {
                 MessageBox.Show("Race name cannot be empty", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
@@ -185,5 +187,14 @@ namespace Race2
 */
         }
 
+        private void tbxUserName_Leave(object sender, EventArgs e)
+        {
+            System.Windows.Forms.TextBox txt = sender as System.Windows.Forms.TextBox;
+            txt.Text = txt.Text.Trim();
+            txt.Text = Regex.Replace(txt.Text, @"\s+", " ");
+
+            //  txt.SelectionStart = txt.Text.Length;
+            //  txt.SelectionLength = 0;
+        }
     }
 }
